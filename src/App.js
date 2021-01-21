@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import uuid from 'uuid';
 import 'bootstrap/dist/css/bootstrap.css';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -10,6 +9,7 @@ class App extends Component {
     <div>
       <div className="container">
         <div className="row">
+          <h1>Test</h1>
           <TodoInput/>
           <TodoList/>
         </div>
