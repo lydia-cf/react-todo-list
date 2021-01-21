@@ -24,12 +24,30 @@ class App extends Component {
   //structure for the methods to passing them down
   //when changing content of the input in the form
   handleChange = (e) => {
-    console.log("handle change");
+    //console.log("handle change");
+    this.setState({
+      item: e.target.value
+    })
   }
 
   //submitting the form
   handleSubmit = (e) => {
     console.log("handle submit");
+    e.preventDefault();
+    //we have to add the id and the item (text) from the state and add it to the items array in the state
+    const newItem = {
+      id: this.state.id,
+      tittle: this.state.item
+    };
+    const updatedItems = [...this.state.items, newItem];
+    this.setState({
+      items: updatedItems,
+      id: uuidv4(),
+      item: '',
+      editItem: false
+    }, 
+    ()=>console.log("callback submit ", this.state)
+    )
   }
 
   //click in the button to clear the list
@@ -49,7 +67,7 @@ class App extends Component {
 
   /*RENDER*/
   render (){
-    console.log(this.state);
+    //console.log(this.state);
     return(
     <div>
       <div className="container">
