@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+install dependencies to uuid and bootstrap with
+npm install --save uuid bootstrap
+
 ## Available Scripts
 
 In the project directory, you can run:
