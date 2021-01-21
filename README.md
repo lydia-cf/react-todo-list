@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 install dependencies to uuid and bootstrap with
 npm install --save uuid bootstrap
+https://www.npmjs.com/package/uuid
+https://getbootstrap.com/docs/5.0/getting-started/contents/#css-files
 
 ## Available Scripts
 
