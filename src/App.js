@@ -6,18 +6,9 @@ import TodoList from './components/TodoList';
 
 class App extends Component {
   state = {
-    items:[
-      {
-        id: 1,
-        tittle:'wake up'
-      },
-      {
-        id: 2,
-        tittle:'make bfast'
-      }
-    ],
+    items: [],
     id: uuidv4(),
-    item: '',
+    item: "",
     editItem: false
   };
   
@@ -27,7 +18,7 @@ class App extends Component {
     //console.log("handle change");
     this.setState({
       item: e.target.value
-    })
+    }, () => console.log(this.state.item))
   }
 
   //submitting the form
@@ -43,26 +34,42 @@ class App extends Component {
     this.setState({
       items: updatedItems,
       id: uuidv4(),
-      item: '',
+      item: "",
       editItem: false
-    }, 
-    ()=>console.log("callback submit ", this.state)
-    )
+    })
   }
 
   //click in the button to clear the list
   clearList = () => {
     console.log("clear list");
+    this.setState({
+      items: []
+    })
   }
 
   //when clicking in the edit icon in an existing item
-  handleEdit = (id) => {
-    console.log("handle edit", id);
+  handleEdit = (idToEdit) => {
+    console.log("handle edit", idToEdit);
+    const filteredItems = this.state.items.filter(item => item.id !== idToEdit); //returning the array
+    const selectedItem = this.state.items.find(item => item.id ===idToEdit); //returning 1
+    console.log(selectedItem.id);
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.tittle,
+      id: selectedItem.id,
+      editItem: true
+    })
   }
 
   //when clicking in the edit icon in an existing item
-  handleDelete = (id) => {
-    console.log(`handle delete ${id}`);
+  handleDelete = (idToDelete) => {
+    console.log("handle edit", idToDelete);
+    //we use the filter method 
+    //we'll display only the items that don't have the id passed
+    const filteredItems = this.state.items.filter(item => item.id !== idToDelete);
+    this.setState({
+      items: filteredItems
+    })
   }
 
   /*RENDER*/
@@ -74,7 +81,7 @@ class App extends Component {
         <div className="row">
           <div className="col-10 mx-auto col-md-8 mt-5">
             <h3 className="text-capitalize text-center">Todo input</h3>
-            <TodoInput item={this.state.name} 
+            <TodoInput item={this.state.item} 
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               editItem={this.state.editItem}
